@@ -5,6 +5,7 @@ Meteor.methods
     throw new Meteor.Error("not-authorized") unless Meteor.userId()
     item.createdAt = new Date()
     item.archived = false
+    item.sold = false
     item.userId = Meteor.userId()
     Items.insert item
   updateCategory: (id, category) ->
@@ -19,3 +20,9 @@ Meteor.methods
   unarchiveItem: (id) ->
     Items.update id,
       $set: archived: false
+  soldItem: (id) ->
+    Items.update id,
+      $set: sold: true
+  onsaleItem: (id) ->
+    Items.update id,
+      $set: sold: false

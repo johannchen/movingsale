@@ -5,7 +5,8 @@
         {{#if currentUser}}
           {{> editableText collection="items" field="name" substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
         {{else}}
-          {{name}}
+          {{#if sold}}<span class="label label-danger">SOLD!</span>{{/if}}
+          {{name}} 
         {{/if}}
         {{#each categories}}
         <span class="cat">
@@ -31,7 +32,7 @@
     <div class="panel-body">
       <div class="row">
         <div class="col-md-12">
-          <a href="{{vendor}}" target="_blank"><img src="{{image}}" width="350px" class="cover"></a><br>
+          <a href="{{vendor}}" target="_blank"><img src="{{image}}" width="350" class="cover"></a><br>
           {{#if currentUser}}
             image url: {{> editableText collection="items" field="image" substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
             vendor url: {{> editableText collection="items" field="vendor" substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
@@ -42,6 +43,7 @@
             Condition: {{condition}}<br>
             Origin Price (RMB): <s>￥{{cost}}</s><br>
             Our Price (RMB): <span class="red">￥{{price}} ({{percentOff}}% off)</span><br>
+            {{#unless sold}}<a href="" class="offer">Make an offer</a>{{/unless}}
           {{/if}}
         </div>
       </div>
@@ -57,7 +59,11 @@
           {{/if}}
         </div>
         <div class="col-md-6 text-right">
-
+          {{#if sold}}
+          <button type="button" id="onsale" class="btn btn-default">On Sale</button>
+          {{else}}
+          <button type="button" id="sold" class="btn btn-default">Sold</button>
+          {{/if}}
         </div>
       </div>
     </div>

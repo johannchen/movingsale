@@ -1,3 +1,5 @@
+Session.setDefault 'itemId', null
+
 Template.item.helpers
   category: ->
     @
@@ -7,6 +9,9 @@ Template.item.helpers
     Math.round((@cost - @price) / @cost * 100)
 
 Template.item.events
+  'click .offer': ->
+    Session.set 'itemId', @_id
+    $('#offer').modal('show')
   'keypress #newCat': (evt, tmpl) ->
     # enter key is pressed
     if evt.which is 13
@@ -21,3 +26,7 @@ Template.item.events
     Meteor.call 'archiveItem', Template.currentData()._id
   'click #unarchive': ->
     Meteor.call 'unarchiveItem', Template.currentData()._id
+  'click #sold': ->
+    Meteor.call 'soldItem', @_id
+  'click #onsale': ->
+    Meteor.call 'onsaleItem', @_id

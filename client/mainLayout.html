@@ -1,0 +1,23 @@
+<template name="mainLayout">
+  <head>
+    <meta charset="utf-8">
+    <title>Moving Sale</title>
+    <meta name="description" content="Moving Sale">
+    <meta name="viewport" content="width=device-width">
+  </head>
+  {{> Template.dynamic template=top}}
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2 sidebar">
+        {{> Template.dynamic template=left}}
+      </div>
+      <div class="col-md-7">
+        {{> Template.dynamic template=main}}
+      </div>
+      <div class="col-md-3">
+        {{> Template.dynamic template=right}}
+      </div>
+    </div>
+  </div>
+
+</template>

@@ -1,0 +1,12 @@
+<template name="categories">
+  <h2 class="page-header">Categories</h2>
+  <ul class="nav nav-pills nav-stacked">
+    <li><a href="/" id="all">All</a></li>
+    {{#each categories}}
+    <li class="category"><a href="#">{{name}}</a></li>
+    {{/each}}
+  </ul>
+  {{#if currentUser}}
+  <input type="text" id="newCategory" class="form-control" placeholder="New Category">
+  {{/if}}
+</template>

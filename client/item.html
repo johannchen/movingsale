@@ -1,0 +1,66 @@
+<template name="item">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        {{#if currentUser}}
+          {{> editableText collection="items" field="name" substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
+        {{else}}
+          {{name}}
+        {{/if}}
+        {{#each categories}}
+        <span class="cat">
+          <span class="label label-info">{{category}}
+          {{#if currentUser}}
+            <span class="remove-cat">&times;</span>
+          {{/if}}
+          </span>
+        </span>
+        {{/each}}
+        {{#if currentUser}}
+        <span class="new-category cat">
+          <input type="text" id="newCat" list="cat-list" placeholder="new category" />
+          <datalist id="cat-list">
+            {{#each catList}}
+            <option value={{name}}></option>
+            {{/each}}
+          </datalist>
+        </span>
+        {{/if}}
+      </h3>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-12">
+          <a href="{{vendor}}" target="_blank"><img src="{{image}}" width="350px" class="cover"></a><br>
+          {{#if currentUser}}
+            image url: {{> editableText collection="items" field="image" substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
+            vendor url: {{> editableText collection="items" field="vendor" substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
+            Condition: {{> editableText collection="items" field="condition" substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
+            Origin Price (RMB): ￥{{> editableText collection="items" field="cost" substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
+            Our Price (RMB): ￥{{> editableText collection="items" field="price" substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
+          {{else}}
+            Condition: {{condition}}<br>
+            Origin Price (RMB): <s>￥{{cost}}</s><br>
+            Our Price (RMB): <span class="red">￥{{price}} ({{percentOff}}% off)</span><br>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+    {{#if currentUser}}
+    <div class="panel-footer">
+      <div class="row">
+        <div class="col-md-6 text-left">
+          {{#if archived}}
+          <button type="button" id="unarchive" class="btn btn-default"><span class="glyphicon glyphicon-open"></span></button>
+          {{else}}
+          <button type="button" id="archive" class="btn btn-default"><span class="glyphicon glyphicon-hdd"></span></button>
+          {{/if}}
+        </div>
+        <div class="col-md-6 text-right">
+
+        </div>
+      </div>
+    </div>
+    {{/if}}
+  </div>
+</template>

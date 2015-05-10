@@ -1,0 +1,17 @@
+<template name="profile">
+  <h2 class="page-header">Profile</h2>
+  {{#with profile}}
+  {{#if editingProfile}}
+    <form>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" value="{{name}}">
+      </div>
+      <button type="button" id="updateProfile" class="btn btn-primary">Update Profile</button>
+    </form>
+  {{else}}
+  	<p><strong>Name: </strong>{{name}}</p>
+    <button type="button" id="editProfile" class="btn btn-default">Edit Profile</button>
+  {{/if}}
+  {{/with}}
+</template>

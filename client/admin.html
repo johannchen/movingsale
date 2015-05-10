@@ -1,0 +1,46 @@
+<template name="admin">
+  <h2 class="page-header">New Item</h2>
+  <form id="newItem">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name">
+    </div>
+    <div class="form-group">
+      <label for="cost">Origin Price</label>
+      <input type="number" class="form-control" id="cost">
+    </div>
+    <div class="form-group">
+      <label for="price">Sale Price</label>
+      <input type="number" class="form-control" id="price">
+    </div>
+    <div class="form-group">
+      <label for="condition">Condition</label>
+      <input type="text" class="form-control" id="condition" list="condition-list">
+      <datalist id="condition-list">
+        <option value="used">used</option>
+        <option value="like new">like new</option>
+        <option value="new">new</option>
+      </datalist>
+    </div>
+    <div class="form-group">
+      <label for="image">Image URL</label>
+      <input type="url" class="form-control" id="image">
+    </div>
+    <div class="form-group">
+      <label for="vendor">Vendor URL</label>
+      <input type="url" class="form-control" id="vendor">
+      <p class="help-block">e.g. from amazon, taobao ...</p>
+    </div>
+    <div class="form-group">
+      <label for="categories">Categories</label>
+      <input type="text" class="form-control" id="categories" list="cat-list">
+      <datalist id="cat-list">
+        {{#each catList}}
+        <option value={{name}}></option>
+        {{/each}}
+      </datalist>
+    </div>
+    <button type="button" id="addItem" class="btn btn-primary">Add Item</button>
+    <button type="button" id="clearItem" class="btn btn-default">Clear</button>
+  </form>
+</template>

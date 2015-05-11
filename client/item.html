@@ -6,7 +6,7 @@
           {{> editableText collection="items" field="name" substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
         {{else}}
           {{#if sold}}<span class="label label-danger">SOLD!</span>{{/if}}
-          {{name}} 
+          {{name}}
         {{/if}}
         {{#each categories}}
         <span class="cat">
@@ -32,16 +32,22 @@
     <div class="panel-body">
       <div class="row">
         <div class="col-md-12">
-          <a href="{{vendor}}" target="_blank"><img src="{{image}}" width="350" class="cover"></a><br>
+          <a href="{{vendor}}" target="_blank"><img src="{{image}}" width="300" class="cover"></a><br>
           {{#if currentUser}}
-            image url: {{> editableText collection="items" field="image" substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
-            vendor url: {{> editableText collection="items" field="vendor" substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
-            Condition: {{> editableText collection="items" field="condition" substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
-            Origin Price (RMB): ￥{{> editableText collection="items" field="cost" substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
-            Our Price (RMB): ￥{{> editableText collection="items" field="price" substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
+            <strong>Image Url</strong>: <br>
+            {{> editableText collection="items" field="image" substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
+            <strong>Vendor Url</strong>:<br>
+            {{> editableText collection="items" field="vendor" substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
+            <strong>Condition</strong>: {{> editableText collection="items" field="condition" substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
+            <strong>Original Price (RMB)</strong>: ￥{{> editableText collection="items" field="cost" substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
+            <strong>Our Price (RMB)</strong>: ￥{{> editableText collection="items" field="price" substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
+            <strong>Note</strong>: {{> editableText collection="items" field="note" substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
           {{else}}
             Condition: {{condition}}<br>
-            Origin Price (RMB): <s>￥{{cost}}</s><br>
+            {{#if note}}
+            Note: {{note}}<br>
+            {{/if}}
+            Original Price (RMB): <s>￥{{cost}}</s><br>
             Our Price (RMB): <span class="red">￥{{price}} ({{percentOff}}% off)</span><br>
             {{#unless sold}}<a href="" class="offer">Make an offer</a>{{/unless}}
           {{/if}}

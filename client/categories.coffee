@@ -5,10 +5,8 @@ Template.categories.helpers
 Template.categories.events
   'click #all': ->
     Session.set 'category', null
-    Session.set 'search', null
   'click .category': ->
     Session.set 'category', @name
-    Session.set 'search', null
   'dblclick .category': ->
     if Meteor.user()
       Meteor.call 'deleteCategory', @_id if confirm 'Are you sure to delete this category ' + @name + '?'

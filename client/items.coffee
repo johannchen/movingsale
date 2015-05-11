@@ -1,3 +1,4 @@
+Session.setDefault 'archived', false
 getItems = ->
   category = Session.get 'category'
   archived = Session.get 'archived'

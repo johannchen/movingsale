@@ -16,6 +16,7 @@ Template.admin.events
     item.condition = tmpl.find('#condition').value
     item.image = tmpl.find('#image').value
     item.vendor = tmpl.find('#vendor').value
+    item.note = tmpl.find('#note').value
     item.categories = [category] if category
     Meteor.call 'addItem', item
     tmpl.find('#newItem').reset()

@@ -1,5 +1,11 @@
 <template name="contact">
   <h2 class="page-header">Contact Seller</h2>
+  {{#with seller}}
+  <p>
+    <strong>Seller Name: </strong> {{name}}<br>
+    <strong>Seller Address:</strong> {{address}}
+  </p>
+  {{/with}}
   <form id="contactForm">
   	<fieldset>
   		<div class="form-group">

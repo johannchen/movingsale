@@ -4,7 +4,7 @@ Template.offer.helpers
 
 Template.offer.events
   'click #makeOffer': (evt, tmpl) ->
-    to = Emails.findOne().email
+    to = Sellers.findOne().email
     from = tmpl.find('#email').value
     subject = "Offer " + @name + ": RMB ￥" + tmpl.find('#offerPrice').value
     Meteor.call 'makeOffer', to, from, subject

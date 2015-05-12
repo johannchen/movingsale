@@ -4,4 +4,4 @@ Meteor.publish "categories", (id) ->
 Meteor.publish "items", (id) ->
   Items.find(userId: id)
 Meteor.publish "seller", (id) ->
-  Emails.find(userId: id)
+  Sellers.find(userId: id)

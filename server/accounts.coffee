@@ -6,7 +6,7 @@ Accounts.onCreateUser (options, user) ->
 		subject: 'New user sign up in Moving Sale'
 		text: 'Please go to ' + Meteor.absoluteUrl()
 	# add email to list
-	Emails.insert
+	Sellers.insert
 		email: options.email
 		userId: user._id
 	# default hook's 'profile' behavior

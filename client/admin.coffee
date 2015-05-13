@@ -1,8 +1,6 @@
 Template.admin.helpers
   catList: ->
     Categories.find()
-  archiveShown: ->
-    Session.get 'archived'
 
 Template.admin.events
   'click #clearItem': (evt, tmpl) ->
@@ -20,7 +18,3 @@ Template.admin.events
     item.categories = [category] if category
     Meteor.call 'addItem', item
     tmpl.find('#newItem').reset()
-  'click #showArchive': ->
-    Session.set 'archived', true
-  'click #hideArchive': ->
-    Session.set 'archived', false

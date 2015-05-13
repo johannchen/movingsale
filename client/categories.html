@@ -7,6 +7,22 @@
     {{/each}}
   </ul>
   {{#if currentUser}}
-  <input type="text" id="newCategory" class="form-control" placeholder="New Category">
+    <input type="text" id="newCategory" class="form-control" placeholder="New Category">
+    <h2 class="page-header">Admin</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#" id="showAll">All</a></li>
+      <li><a href="#" id="showArchive">Archived</a></li>
+      <li><a href="#" id="showOnSale">On Sale</a></li>
+      <li><a href="#" id="showSold">Sold</a></li>
+    </ul>
+    <!--
+    {{#if sold}}
+    <select class="form-control">
+      {{#each buyers}}
+      <option>{{buyer}}</option>
+      {{/each}}
+    </select>
+    {{/if}}
+    -->
   {{/if}}
 </template>

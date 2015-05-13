@@ -1,18 +1,25 @@
 Session.setDefault 'archived', false
+Session.setDefault 'showSold', false
+
 getItems = ->
   category = Session.get 'category'
   archived = Session.get 'archived'
-  if category
-    Items.find {archived: archived, categories: $in: [category]},
-      sort: createdAt: -1
-  else
-    #Items.find {archived: archived},
-    Items.find {},
-      sort: createdAt: -1
+  sold = Session.get 'sold'
+  showSold = Session.get 'showSold'
+  condition = {archived: archived}
+
+  condition.categories = {$in: [category]} if category
+  condition.sold = sold if showSold
+  Items.find condition, sort: createdAt: -1
 
 Template.items.helpers
-  total: ->
+  count: ->
     getItems().count()
+  total: ->
+    sum = 0
+    getItems().forEach (item) ->
+      sum += parseInt(item.price)
+    sum
   noItemFound: ->
     getItems().count() == 0
   items: ->

@@ -1,6 +1,15 @@
 Template.categories.helpers
   categories: ->
     Categories.find()
+  sold: ->
+    Session.get 'sold'
+###
+  buyers: ->
+    buyers = []
+    Items.find().forEach (item) ->
+      buyers.push item.buyer
+    buyers
+###
 
 Template.categories.events
   'click #all': ->
@@ -16,3 +25,14 @@ Template.categories.events
       category = tmpl.find('#newCategory').value
       Meteor.call 'addCategory', category
       tmpl.find('#newCategory').value = null
+  'click #showArchive': ->
+    Session.set 'archived', true
+  'click #showSold': ->
+    Session.set 'sold', true
+    Session.set 'showSold', true
+  'click #showOnSale': ->
+    Session.set 'sold', false
+    Session.set 'showSold', true
+  'click #showAll': ->
+    Session.set 'showSold', false
+    Session.set 'archived', false

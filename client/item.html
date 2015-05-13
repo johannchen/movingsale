@@ -42,6 +42,7 @@
             <strong>Original Price (RMB)</strong>: ￥{{> editableText collection="items" field="cost" substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
             <strong>Our Price (RMB)</strong>: ￥{{> editableText collection="items" field="price" substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
             <strong>Note</strong>: {{> editableText collection="items" field="note" substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
+            <strong>Buyer</strong>: {{> editableText collection="items" field="buyer" substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
           {{else}}
             Condition: {{condition}}<br>
             {{#if note}}
@@ -59,14 +60,14 @@
       <div class="row">
         <div class="col-md-6 text-left">
           {{#if archived}}
-          <button type="button" id="unarchive" class="btn btn-default"><span class="glyphicon glyphicon-open"></span></button>
+          <button type="button" id="unarchive" class="btn btn-default">Unarchive</button>
           {{else}}
-          <button type="button" id="archive" class="btn btn-default"><span class="glyphicon glyphicon-hdd"></span></button>
+          <button type="button" id="archive" class="btn btn-default">Archive</button>
           {{/if}}
         </div>
         <div class="col-md-6 text-right">
           {{#if sold}}
-          <button type="button" id="onsale" class="btn btn-default">On Sale</button>
+          <button type="button" id="onsale" class="btn btn-default">Back On Sale</button>
           {{else}}
           <button type="button" id="sold" class="btn btn-default">Sold</button>
           {{/if}}

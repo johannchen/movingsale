@@ -1,19 +1,20 @@
 Template.categories.helpers
   categories: ->
     Categories.find()
-  sold: ->
-    Session.get 'sold'
-###
   buyers: ->
     buyers = []
-    Items.find().forEach (item) ->
-      buyers.push item.buyer
+    Items.find({archived: false, sold: true}).forEach (item) ->
+      buyers.push item.buyer if item.buyer and buyers.indexOf(item.buyer) == -1
     buyers
-###
+  buyer: ->
+    @
 
 Template.categories.events
   'click #all': ->
     Session.set 'category', null
+    Session.set 'showSold', false
+    Session.set 'archived', false
+    Session.set 'available', false
   'click .category': ->
     Session.set 'category', @name
   'dblclick .category': ->
@@ -27,12 +28,15 @@ Template.categories.events
       tmpl.find('#newCategory').value = null
   'click #showArchive': ->
     Session.set 'archived', true
-  'click #showSold': ->
+  'click #showSold': (evt, tmpl)->
     Session.set 'sold', true
     Session.set 'showSold', true
   'click #showOnSale': ->
     Session.set 'sold', false
     Session.set 'showSold', true
-  'click #showAll': ->
-    Session.set 'showSold', false
-    Session.set 'archived', false
+  'click #availableNow': ->
+    Session.set 'available', true
+  'change #buyer': (evt, tmpl)->
+    buyer = tmpl.find('#buyer').value
+    buyer = null if buyer is ''
+    Session.set 'buyer', buyer

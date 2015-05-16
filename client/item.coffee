@@ -30,3 +30,5 @@ Template.item.events
     Meteor.call 'soldItem', @_id
   'click #onsale': ->
     Meteor.call 'onsaleItem', @_id
+  'change #available': (evt, tmpl) ->
+    Meteor.call 'updateAvailability', @_id, evt.target.checked

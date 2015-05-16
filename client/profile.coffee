@@ -17,10 +17,11 @@ Template.profile.events
     name = tmpl.find('#name').value
     email = tmpl.find('#email').value
     address = tmpl.find('#address').value
+    availableDate = tmpl.find('#availableDate').value
     profile =
       name: name
       address: address
     Meteor.users.update Meteor.userId(),
       $set: profile: profile
-    Meteor.call 'upsertSeller', name, email, address
+    Meteor.call 'upsertSeller', name, email, address, availableDate
     tmpl.editingProfile.set null

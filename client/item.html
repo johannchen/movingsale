@@ -35,21 +35,32 @@
           <a href="{{vendor}}" target="_blank"><img src="{{image}}" width="300" class="cover"></a><br>
           {{#if currentUser}}
             <strong>Image Url</strong>: <br>
-            {{> editableText collection="items" field="image" substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
+            {{> editableText collection="items" field="image" acceptEmpty=true substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
             <strong>Vendor Url</strong>:<br>
-            {{> editableText collection="items" field="vendor" substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
+            {{> editableText collection="items" field="vendor" acceptEmpty=true substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
             <strong>Condition</strong>: {{> editableText collection="items" field="condition" substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
-            <strong>Original Price (RMB)</strong>: ￥{{> editableText collection="items" field="cost" substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
+            <strong>Original Price (RMB)</strong>: ￥{{> editableText collection="items" field="cost" acceptEmpty=true substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
             <strong>Our Price (RMB)</strong>: ￥{{> editableText collection="items" field="price" substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
-            <strong>Note</strong>: {{> editableText collection="items" field="note" substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
-            <strong>Buyer</strong>: {{> editableText collection="items" field="buyer" substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
+            <strong>Note</strong>: {{> editableText collection="items" field="note" acceptEmpty=true substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" id="available" checked="{{available}}">
+                <strong>Available Now</strong>
+              </label>
+            </div>
+            <strong>Buyer</strong>: {{> editableText collection="items" field="buyer" acceptEmpty=true substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
           {{else}}
             Condition: {{condition}}<br>
             {{#if note}}
-            Note: {{note}}<br>
+              Note: {{note}}<br>
             {{/if}}
-            Original Price (RMB): <s>￥{{cost}}</s><br>
-            Our Price (RMB): <span class="red">￥{{price}} ({{percentOff}}% off)</span><br>
+            {{#if cost}}
+              Original Price (RMB): <s>￥{{cost}}</s><br>
+            {{/if}}
+            Our Price (RMB): <span class="red">￥{{price}} {{#if cost}}({{percentOff}}% off){{/if}}</span><br>
+            {{#if available}}
+              <span class="green">Available Now!</span>
+            {{/if}}
             {{#unless sold}}<a href="" class="offer">Make an offer</a>{{/unless}}
           {{/if}}
         </div>

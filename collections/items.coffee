@@ -26,3 +26,6 @@ Meteor.methods
   onsaleItem: (id) ->
     Items.update id,
       $set: sold: false
+  updateAvailability: (id, available) ->
+    Items.update id,
+      $set: available: available

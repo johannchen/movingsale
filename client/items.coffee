@@ -6,13 +6,30 @@ getItems = ->
   archived = Session.get 'archived'
   sold = Session.get 'sold'
   showSold = Session.get 'showSold'
+  available = Session.get 'available'
+  buyer = Session.get 'buyer'
   condition = {archived: archived}
 
   condition.categories = {$in: [category]} if category
   condition.sold = sold if showSold
+  condition.available = available if available
+  condition.buyer = buyer if buyer
   Items.find condition, sort: createdAt: -1
 
 Template.items.helpers
+  filter: ->
+    filter = ''
+    filter = 'Archived ' if Session.get 'archived'
+    filter += Session.get 'category' if Session.get 'category'
+    if Session.get 'showSold'
+      if Session.get 'sold'
+        filter += ' Sold'
+      else
+        filter += ' On Sale'
+    filter += ' Available Now' if Session.get 'available'
+    filter += ' ' + Session.get 'buyer' if Session.get 'buyer'
+    filter
+
   count: ->
     getItems().count()
   total: ->

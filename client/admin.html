@@ -1,5 +1,5 @@
 <template name="admin">
-  
+
   <h2 class="page-header">New Item</h2>
   <form id="newItem">
     <div class="form-group">
@@ -46,6 +46,12 @@
     <div class="form-group">
       <label for="note">Note</label>
       <input type="text" class="form-control" id="note">
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" id="available">
+        Available Now
+      </label>
     </div>
     <button type="button" id="addItem" class="btn btn-primary">Add Item</button>
     <button type="button" id="clearItem" class="btn btn-default">Clear</button>

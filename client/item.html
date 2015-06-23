@@ -39,12 +39,12 @@
             <strong>Vendor Url</strong>:<br>
             {{> editableText collection="items" field="vendor" acceptEmpty=true substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
             <strong>Condition</strong>: {{> editableText collection="items" field="condition" substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
-            <strong>Original Price (RMB)</strong>: ￥{{> editableText collection="items" field="cost" acceptEmpty=true substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
-            <strong>Our Price (RMB)</strong>: ￥{{> editableText collection="items" field="price" substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
+            <strong>Original Price</strong>: {{currencySymbol currency}}{{> editableText collection="items" field="cost" acceptEmpty=true substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
+            <strong>Our Price</strong>: {{currencySymbol currency}}{{> editableText collection="items" field="price" substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
             <strong>Note</strong>: {{> editableText collection="items" field="note" acceptEmpty=true substitute='<i class="glyphicon glyphicon-pencil"></i>'}}<br>
             <div class="checkbox">
               <label>
-                <input type="checkbox" id="available" checked="{{available}}">
+                <input type="checkbox" class="available" checked="{{available}}">
                 <strong>Available Now</strong>
               </label>
             </div>
@@ -55,9 +55,9 @@
               Note: {{note}}<br>
             {{/if}}
             {{#if cost}}
-              Original Price (RMB): <s>￥{{cost}}</s><br>
+              Original Price: <s>{{currencySymbol currency}}{{cost}}</s><br>
             {{/if}}
-            Our Price (RMB): <span class="red">￥{{price}} {{#if cost}}({{percentOff}}% off){{/if}}</span><br>
+            Our Price: <span class="red">{{currencySymbol currency}}{{price}} {{#if cost}}({{percentOff}}% off){{/if}}</span><br>
             {{#if available}}
               <span class="green">Available Now!</span>
             {{/if}}
@@ -70,17 +70,18 @@
     <div class="panel-footer">
       <div class="row">
         <div class="col-md-6 text-left">
+          <button type="button" class="btn btn-danger remove">Remove</button>
           {{#if archived}}
-          <button type="button" id="unarchive" class="btn btn-default">Unarchive</button>
+          <button type="button" class="btn btn-default unarchive">Unarchive</button>
           {{else}}
-          <button type="button" id="archive" class="btn btn-default">Archive</button>
+          <button type="button" class="btn btn-default archive">Archive</button>
           {{/if}}
         </div>
         <div class="col-md-6 text-right">
           {{#if sold}}
-          <button type="button" id="onsale" class="btn btn-default">Back On Sale</button>
+          <button type="button" class="btn btn-default onsale">Back On Sale</button>
           {{else}}
-          <button type="button" id="sold" class="btn btn-default">Sold</button>
+          <button type="button" class="btn btn-default sold">Sold</button>
           {{/if}}
         </div>
       </div>

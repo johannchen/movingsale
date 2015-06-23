@@ -14,6 +14,8 @@ Meteor.methods
   removeCategory: (id, category) ->
     Items.update id,
       $pull: categories: category
+  removeItem: (id) ->
+    Items.remove id
   archiveItem: (id) ->
     Items.update id,
       $set: archived: true

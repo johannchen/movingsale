@@ -1,5 +1,8 @@
 <template name="items">
-  <h2 class="page-header">Items {{filter}} ({{count}}) {{#if currentUser}}￥{{total}}{{/if}}</h2>
+  <h2 class="page-header">
+    Items {{filter}} ({{count}})
+    {{#if currentUser}}{{currencySymbol currency}}{{total}}{{/if}}
+  </h2>
   {{#each items}}
     <div class="row">
       {{#each row}}

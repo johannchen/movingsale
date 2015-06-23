@@ -1,6 +1,8 @@
 Session.setDefault 'itemId', null
 
 Template.item.helpers
+  currency: ->
+    Sellers.findOne(userId: Session.get('uid')).currency
   category: ->
     @
   catList: ->
@@ -22,13 +24,16 @@ Template.item.events
     category = String @
     item = Template.currentData()
     Meteor. call 'removeCategory', item._id, category
-  'click #archive': ->
+  'click .remove': ->
+    if confirm 'Are you sure to delete this item?'
+      Meteor.call 'removeItem', @_id
+  'click .archive': ->
     Meteor.call 'archiveItem', Template.currentData()._id
-  'click #unarchive': ->
+  'click .unarchive': ->
     Meteor.call 'unarchiveItem', Template.currentData()._id
-  'click #sold': ->
+  'click .sold': ->
     Meteor.call 'soldItem', @_id
-  'click #onsale': ->
+  'click .onsale': ->
     Meteor.call 'onsaleItem', @_id
-  'change #available': (evt, tmpl) ->
+  'change .available': (evt, tmpl) ->
     Meteor.call 'updateAvailability', @_id, evt.target.checked
